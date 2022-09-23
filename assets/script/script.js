@@ -5,7 +5,7 @@ notification.forEach(e => {
     let haveNoti = ""
     if (e.read) c = ++cRead
     if (e.read) c = haveNoti = '<strong class="dot">•</strong>'
-    let user = `<img src="assets/images/avatar-${(e.user).replace(" ","-")}.webp">`
+    let user = `<img src="assets/images/avatar-${(e.user).replace(" ","-").toLowerCase()}.webp">`
 
     let name = `<strong><a href="" class="name">${e.user}</a></strong>`
 
