@@ -2,50 +2,108 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user"s device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <title>Frontend Mentor | Notifications page</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
+    @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&display=swap");
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 16px;
+    }
+    body{
+      width: 100vw;
+      height: 100vh;
+      background-color: hsl(210, 60%, 98%);
+      display: inline-flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items:center;
+    }
+    section{
+      background-color: hsl(0, 0%, 100%);
+      padding: 20px;
+      height: auto;
+      width: 100%;
+      min-width: 375px;
+      max-width: 1440px;
+      -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); 
+      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); 
+      border-radius: 20px;
+    }
+    nav{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    nav a{
+      cursor: pointer;
+    }
+    .notification{
+      font-size: 18px;
+      font-weight: 800;
+    }
+    .notification span{
+      background-color: hsl(219, 85%, 26%);
+      padding: 2px 10px;
+      font-size: 16px;
+      border-radius: 25%;
+      color: hsl(0, 0%, 100%);
+      font-weight: 500;
+      margin-left: 10px;
+    }
+    nav a{
+      color: hsl(219, 14%, 63%);
+    }
   </style>
 </head>
 <body>
-
-  Notifications 3
-
-  Mark all as read
-
-  Mark Webber reacted to your recent post My first tournament today!
-  1m ago
-
-  Angela Gray followed you
-  5m ago
-
-  Jacob Thompson has joined your group Chess Club
-  1 day ago
-
-  Rizky Hasanuddin sent you a private message
-  5 days ago
-  Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and 
-  I'm already having lots of fun and improving my game.
-
-  Kimberly Smith commented on your picture
-  1 week ago
-
-  Nathan Peterson reacted to your recent post 5 end-game strategies to increase your win rate
-  2 weeks ago
-
-  Anna Kim left the group Chess Club
-  2 weeks ago
+  <section>
+    <nav>
+      <div class="notification">
+        Notifications
+      </div>
+      <a onclick="read_all()">Mark all as read</a>
+    </nav>
   
+  </section>
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="#">Jean Carlos</a>.
   </div>
 </body>
+<script>
+  notification = [
+    {user:"Mark Webber",text:"reacted to your recent post",action:"link",result:"My first tournament today!",time:"1m ago",read:true},
+    {user:"Angela Gray",text:"followed you",action:false,result:false,time:"5m ago",read:true},
+    {user:"Jacob Thompson",text:"has joined your group",action:"link",result:"Chess Club",time:"1 day ago",read:true},
+    {user:"Rizky Hasanuddin",text:"sent you a private message",action:"message",result:"Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and I'm already having lots of fun and improving my game.",time:"5 days ago",read:false},
+    {user:"Kimberly Smith",text:"commented on your picture",action:"image",result:"assets/images/image-chess.webp",time:"1 week ago",read:false},
+    {user:"Nathan Peterson",text:"reacted to your recent post",action:"strong",result:"5 end-game strategies to increase your win rate",time:"2 weeks ago",read:false},
+    {user:"Anna Kim",text:"left the group",action:"strong",result:"Chess Club",time:"2 weeks ago",read:false},
+  ]
+  let cRead = 0
+  notification.forEach(e => {
+    if(e.read) c = ++cRead
+  })
+  $(".notification").append(`<span>${cRead}</span>`)
+  const read_all = ()=>{
+    notification.forEach(e => {
+      if(e.read) c = e.read = false
+    })
+    span = $(".notification > span")
+    span.fadeOut(1000,()=>{span.remove()})
+  }
+</script>
 </html>
